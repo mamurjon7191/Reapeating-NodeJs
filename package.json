@@ -1,0 +1,23 @@
+{
+  "name": "reapeating-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mamurjon7191/Reapeating-NodeJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mamurjon7191/Reapeating-NodeJs/issues"
+  },
+  "homepage": "https://github.com/mamurjon7191/Reapeating-NodeJs#readme",
+  "dependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

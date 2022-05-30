@@ -1,16 +1,37 @@
 const fs = require("fs");
+const http = require("http");
+const url = require("url");
 
-// Block code -> Sync coding
-// const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
-// console.log(textIn);
+const oqilganMalumotSync = fs.readFileSync("./dev-data/data.json", "utf-8"); //sinxronniy oqish
+// console.log(oqilganMalumotSync);
+const oqilganMalumotAsync = fs.readFile(
+  // malumotni assinxron yozish
+  "./dev-data/data.json",
+  "utf-8",
+  (err, data) => {
+    // console.log(data);
+  }
+);
+//////////////////////////////////////
+const malumotYozishSync = fs.writeFileSync(
+  // malumotni sinxron yozish
+  "./txt/new.json",
+  oqilganMalumotSync
+);
+const malumotYozishAsync = fs.writeFile(
+  "./txt/new1.json",
+  oqilganMalumotSync,
+  (err, data) => {
+    console.log("malumot yozildi");
+  }
+);
 
-// const textOut = `This file overwrite: ${textIn}`;
+const server = http.createServer((req, res) => {
+  const zapros = req.url;
+  const url1 = url.parse(zapros);
 
-// fs.writeFileSync("./txt/output.txt", textOut);
-// console.log("Write file");
-
-// Non-blocking code -> Async coding
-fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
-  console.log(data);
+  console.log(zapros);
+  console.log(url1.query);
+  res.end("server has started");
 });
-console.log("Read file");
+server.listen(8000, "127.0.0.1");
