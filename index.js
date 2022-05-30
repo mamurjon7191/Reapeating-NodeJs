@@ -1,37 +1,48 @@
+const express = require("express");
 const fs = require("fs");
-const http = require("http");
-const url = require("url");
 
-const oqilganMalumotSync = fs.readFileSync("./dev-data/data.json", "utf-8"); //sinxronniy oqish
-// console.log(oqilganMalumotSync);
-const oqilganMalumotAsync = fs.readFile(
-  // malumotni assinxron yozish
-  "./dev-data/data.json",
-  "utf-8",
-  (err, data) => {
-    // console.log(data);
-  }
-);
-//////////////////////////////////////
-const malumotYozishSync = fs.writeFileSync(
-  // malumotni sinxron yozish
-  "./txt/new.json",
-  oqilganMalumotSync
-);
-const malumotYozishAsync = fs.writeFile(
-  "./txt/new1.json",
-  oqilganMalumotSync,
-  (err, data) => {
-    console.log("malumot yozildi");
-  }
-);
+const formatJson = JSON.parse(fs.readFileSync("./dev-data/data.json", "utf-8"));
 
-const server = http.createServer((req, res) => {
-  const zapros = req.url;
-  const url1 = url.parse(zapros);
+const app = express();
 
-  console.log(zapros);
-  console.log(url1.query);
-  res.end("server has started");
-});
-server.listen(8000, "127.0.0.1");
+app.use(express.json());
+
+//jsonni get qilish
+const getTours = (req, res) => {
+  res.status(200).json({
+    status: "succes",
+    data: formatJson,
+  });
+};
+// jsonni post qilish
+const postTours = (req, res) => {
+  const obj = req.body;
+  formatJson.push(obj);
+  fs.writeFile("./dev-data/new.json", JSON.stringify(formatJson), (err) => {
+    console.log(err);
+  });
+  console.log(formatJson);
+  res.status(200).json({
+    status: "succes",
+    data: {
+      formatJson,
+    },
+  });
+};
+// jsonni delete qilish
+const deleteTours = (req, res) => {
+  const id = req.params.id;
+  const need = formatJson.filter((val) => {
+    return val.id != id;
+  });
+  console.log(req.params);
+  res.status(200).json({
+    status: "succes",
+    data: need,
+  });
+};
+
+app.route("/api/v1/tours/").get(getTours).post(postTours);
+app.route("/api/v1/tours/:id").get(deleteTours);
+
+app.listen("8000", "127.0.0.1");
