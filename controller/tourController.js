@@ -1,17 +1,13 @@
-const express = require("express");
 const fs = require("fs");
 
 const formatJson = JSON.parse(fs.readFileSync("./dev-data/data.json", "utf-8"));
 
-const app = express();
-
-app.use(express.json());
-
 //jsonni get qilish
 const getTours = (req, res) => {
+  console.log(1);
   res.status(200).json({
     status: "succes",
-    data: formatJson,
+    data: "hi",
   });
 };
 // jsonni post qilish
@@ -42,7 +38,8 @@ const deleteTours = (req, res) => {
   });
 };
 
-app.route("/api/v1/tours/").get(getTours).post(postTours);
-app.route("/api/v1/tours/:id").get(deleteTours);
-
-app.listen("8000", "127.0.0.1");
+module.exports = {
+  getTours,
+  deleteTours,
+  postTours,
+};
