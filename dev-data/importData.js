@@ -1,6 +1,6 @@
-const Tours = require("../model/tourModel");
 const fs = require("fs");
 const mongoose = require("moongoose");
+const Tours = require("../model/tourModel");
 
 mongoose
   .connect(
@@ -21,7 +21,6 @@ const addInfo = async () => {
     console.log(err);
   }
 };
-
 const deleteInfo = async () => {
   try {
     const dele1e = await Tours.deleteMany();
