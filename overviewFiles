@@ -1,0 +1,20 @@
+---->controller
+Metodlarni funksiyasi turradi
+
+---->router
+Yollar turadi
+
+---->app
+midlewarelar turadi
+
+---->config.env
+ozgaruvchilarni saqlab olish uchun
+
+---->server.js
+data basega shu yerdan ulanadi
+
+---->
+
+---->
+
+---->
