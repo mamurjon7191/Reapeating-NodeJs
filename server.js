@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
-const mongoose = require("moongoose");
+const mongoose = require("mongoose");
+
 // global ozgaruvchilarni tanishi uchun
 dotenv.config({ path: "./config.env" });
 

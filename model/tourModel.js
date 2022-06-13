@@ -5,13 +5,12 @@ const tourScheme = new mongoose.Schema({
     required: [true, "Siz nameni kiritishingiz shart"],
     unique: true,
   },
-  createAt: {
-    select: false, // post qisa boladi lekin get qisa createAtni olib kelmaydi !!!!
-    type: Date,
-    default: Date.now(),
+  duration: {
+    type: Number,
+    required: [true, "Siz numberni kiritishingiz shart"],
   },
 });
 
-const Tours = mongoose.model("firstCollection", tourScheme);
+const Tours = mongoose.model("mamur", tourScheme);
 
 module.exports = Tours;

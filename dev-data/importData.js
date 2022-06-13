@@ -1,5 +1,5 @@
 const fs = require("fs");
-const mongoose = require("moongoose");
+const mongoose = require("mongoose"); // bitta o boladi
 const Tours = require("../model/tourModel");
 
 mongoose
@@ -36,3 +36,13 @@ if (process.argv[2] == "--add") {
 } else if (process.argv[2] == "--delete") {
   deleteInfo();
 }
+
+///////////////////////// DataBasega saqlashni yana bir yoli lekin bu sal qiyinroq
+
+// const testTours = new Tours({
+//   name: "Mamur",
+//   duration: 3,
+// });
+// testTours.save().then((a) => {
+//   console.log(a);
+// });

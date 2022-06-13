@@ -1,15 +1,10 @@
 const fs = require("fs");
+const Tours = require("../model/tourModel");
 
 const formatJson = JSON.parse(fs.readFileSync("./dev-data/data.json", "utf-8"));
 
 //jsonni get qilish
-const getTours = (req, res) => {
-  console.log(1);
-  res.status(200).json({
-    status: "succes",
-    data: "hi",
-  });
-};
+const getTours = (req, res) => {};
 // jsonni post qilish
 const postTours = (req, res) => {
   const obj = req.body;
