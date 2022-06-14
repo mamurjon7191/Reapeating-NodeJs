@@ -7,7 +7,11 @@ const tourScheme = new mongoose.Schema({
   },
   duration: {
     type: Number,
-    required: [true, "Siz numberni kiritishingiz shart"],
+    required: [true, "Siz durationni kiritishingiz shart"],
+  },
+  ratingsAverage: {
+    type: Number,
+    required: [true, "Siz  ratingsSizeni kiritishinfgiz kerak"],
   },
 });
 

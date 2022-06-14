@@ -43,6 +43,7 @@ if (process.argv[2] == "--add") {
 //   name: "Mamur",
 //   duration: 3,
 // });
+
 // testTours.save().then((a) => {
 //   console.log(a);
 // });

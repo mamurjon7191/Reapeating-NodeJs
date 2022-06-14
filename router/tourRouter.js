@@ -9,6 +9,9 @@ tourRouter
   .post(tourController.postTours);
 
 // tourController.getTours();
-tourRouter.route("/:id").delete(tourController.deleteTours);
-
+tourRouter
+  .route("/:id")
+  .delete(tourController.deleteTours)
+  .get(tourController.getTour)
+  .patch(tourController.updateTours);
 module.exports = tourRouter;
