@@ -7,10 +7,24 @@ const formatJson = JSON.parse(fs.readFileSync("./dev-data/data.json", "utf-8"));
 //jsonni get qilish
 const getTours = async (req, res) => {
   try {
-    const allTours = await Tours.find();
+    // 1)<filterlash>
+    const queryCopy = { ...req.query };
+    const removeQuery = ["sort", "page", "limit", "field"]; /// bular apini featurelari bolgani uchun urlga yozsak data baseda bunday key bolmaganligi sababli xato beradi shuning uchun bularni ochirish kerak
+    removeQuery.forEach((val) => {
+      return delete queryCopy[val];
+    });
+    //<filterlash/>
+
+    let dataMain = await Tours.find(queryCopy); // find ichiga yozgan queryimiz faqat osha queryni qanoatlantirsa olib keldgani
+    //2)<Sorting>
+    if (req.query.sort) {
+      console.log(req.query);
+      dataMain = dataMain.sort(req.query.sort);
+    }
+    //<Sorting/>
     res.status(200).json({
       status: "Succes",
-      data: allTours,
+      data: dataMain,
     });
   } catch (err) {
     res.status(404).json({

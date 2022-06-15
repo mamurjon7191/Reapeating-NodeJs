@@ -13,6 +13,10 @@ const tourScheme = new mongoose.Schema({
     type: Number,
     required: [true, "Siz  ratingsSizeni kiritishinfgiz kerak"],
   },
+  price: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Tours = mongoose.model("mamur", tourScheme);
